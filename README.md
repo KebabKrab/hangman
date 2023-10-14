@@ -5,4 +5,8 @@ This is an implementation of the Hangman game, where the computer thinks of a wo
 
 This project is made with python 3.11.4.
 
-In order to play the game, the user types in a letter as a guess, and the computer tells them whether the guess is right or wrong, adding the letter to the corresponding location in the word if right, and causing the user to come closer to losing if wrong. 
+In order to play the game, the user types in a letter as a guess, and the computer tells them whether the guess is right or wrong, adding the letter to the corresponding location in the word if right, and causing the user to come closer to losing if wrong.
+
+miletone_2.py defines a list of possible words and randomly selects one of them. It then asks the user to input a letter as a guess and checks whether the input is valid, i.e. whether the input is a single alphabetical character.
+
+milestone_3.py builds on the functionality of milestone_2.py. After asking for user input to guess a letter and making sure that it's a valid guess, it then checks whether the inputted letter is in the selected word.
