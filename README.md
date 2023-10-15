@@ -12,3 +12,5 @@ miletone_2.py defines a list of possible words and randomly selects one of them.
 milestone_3.py builds on the functionality of milestone_2.py. After asking for user input to guess a letter and making sure that it's a valid guess, it then checks whether the inputted letter is in the selected word.
 
 milestone_4.py utilises OOP to create a Hangman class containing attributes relaating to aspects of the game such as the chosen word from the word list, the number of lives the user has left, and a list of unique letters guessed. Two methods are defined: one which checks that the letter that the user guesses is contained within the chosen word, and another which asks the user for input, ensures that the guess is valid and calls the check_guess() method.
+
+milestone_5.py adds a function which is called in order to play a game of hangman. The function checks how many lives the user has remaining, and how many letters of the word are remaining to be guessed. If the number of lives falls to zero, the user loses the game. If there are no missing letters left in the word, and the number of lives is above zero, the user wins the game.
