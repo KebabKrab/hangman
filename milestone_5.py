@@ -2,30 +2,58 @@ import random
 
 class Hangman:
     '''
-    This class is used to represent a game of hangman.
+    A Hangman Game that asks the user for a letter and checks if it is in the word.
+    It starts with a default number of lives and a random word from the word_list.
+
+    Parameters:
+    ----------
+    word_list: list
+        List of words to be used in the game
+    num_lives: int
+        Number of lives the player has
     
     Attributes:
-        word_list (list): the list of words the computer can choose from
-        num_lives (int): the number of lives the user has remaining
-        word (str): the chosen word
-        word_guessed (list): list of underscores to be replaced with letters of the word when correctly guessed
-        num_letters (int): number of letters left to be guessed in the word
-        list_of_guesses (list): list of all letters previously guessed
+    ----------
+    word: str
+        The word to be guessed picked randomly from the word_list
+    word_guessed: list
+        A list of the letters of the word, with '_' for each letter not yet guessed
+        For example, if the word is 'apple', the word_guessed list would be ['_', '_', '_', '_', '_']
+        If the player guesses 'a', the list would be ['a', '_', '_', '_', '_']
+    num_letters: int
+        The number of UNIQUE letters in the word that have not been guessed yet
+    num_lives: int
+        The number of lives the player has
+    list_letters: list
+        A list of the letters that have already been tried
+
+    Methods:
+    -------
+    check_letter(letter)
+        Checks if the letter is in the word.
+    ask_letter()
+        Asks the user for a letter.
     '''
-    def __init__(self, word_list, num_lives = 5):
+    def __init__(self, word_list, num_lives=5):
         self.word_list = word_list
         self.num_lives = num_lives
         self.word = random.choice(self.word_list)
         self.word_guessed = ['_']*len(self.word)
         self.num_letters = len(set(self.word))
         self.list_of_guesses = []
+
+        print(self.word_guessed)
         
     def check_guess(self, guess):
         '''
-        This function checks whether the inputted guess is within the chosen word
+        Checks if the letter is in the word.
+        If it is, it replaces the '_' in the word_guessed list with the letter.
+        If it is not, it reduces the number of lives by 1.
 
-        Args:
-            guess (str): the guess inputted by the user
+        Parameters:
+        ----------
+        letter: str
+            The letter to be checked
         '''
         guess = guess.lower()
         if guess in self.word:  # Reduces number of letters to be guessed by 1 if guess is correct
@@ -34,6 +62,7 @@ class Hangman:
                 if self.word[index] == guess:
                     self.word_guessed[index] = guess
             self.num_letters -= 1
+        
         else:   # Reduces number of lives by 1 if guess is incorrect
             self.num_lives -= 1
             print(f"Sorry, '{guess}' is not in the word.")
@@ -41,37 +70,39 @@ class Hangman:
 
     def ask_for_input(self):
         '''
-        This function asks the user for input and validates it
+        Asks the user for a letter and checks two things:
+        1. If the letter has already been tried
+        2. If the character is a single character
+        If it passes both checks, it calls the check_guess method.
         '''
-        print(self.word_guessed)
         while True:
             guess = input("Guess a letter.\n")
             guess = guess.lower()
             if len(guess)!=1 or guess.isalpha()==False: # Rejects guess if it is not a single letter
                 print("Invalid letter. Please enter a single alphabetical character.")
+            
             elif guess in self.list_of_guesses: # Rejects guess if it has already been guessed
                 print("You already tried that letter!")
+            
             else: # Checks whether guess is correct and adds it to list of guesses
                 self.check_guess(guess)
                 self.list_of_guesses.append(guess)
+                print(self.word_guessed)
                 break
-                
 
-fruits = ["apple", "banana", "strawberry", "watermelon", "pineapple", "passionfruit", "guava", "papaya"]
-    
 def play_game(word_list):
     '''
     This function is used to run and play the hangman game
     
     Args:
-        word_list (list): the list of words the computer can choose from
+    ----
+    word_list: str
+        The list of words the computer can choose from
     '''
-    num_lives = 5
-    game = Hangman(word_list, num_lives)
-    
+    game = Hangman(word_list, num_lives=5)
     while True:
         if game.num_lives == 0:
-            print("YOU LOST!")
+            print(f"YOU LOST! The word was '{game.word}'.")
             break
         if game.num_letters > 0:
             game.ask_for_input()
@@ -79,4 +110,6 @@ def play_game(word_list):
             print("CONGRATULATIONS. You won the game!")
             break
 
-play_game(fruits)
+if __name__ == "__main__":
+    fruits = ["apple", "banana", "strawberry", "watermelon", "pineapple", "passionfruit", "guava", "papaya"]
+    play_game(fruits)
