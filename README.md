@@ -31,7 +31,7 @@ The game ends either when the player loses all of their lives (by default this i
 ## License Information
 MIT License
 
-Copyright (c) [year] [fullname]
+Copyright (c) 2023 Rakin Chowdhury
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
