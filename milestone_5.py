@@ -24,14 +24,14 @@ class Hangman:
         The number of UNIQUE letters in the word that have not been guessed yet
     num_lives: int
         The number of lives the player has
-    list_letters: list
+    list_of_guesses: list
         A list of the letters that have already been tried
 
     Methods:
     -------
-    check_letter(letter)
+    check_guess(guess)
         Checks if the letter is in the word.
-    ask_letter()
+    ask_for_input()
         Asks the user for a letter.
     '''
     def __init__(self, word_list, num_lives=5):
