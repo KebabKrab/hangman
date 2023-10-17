@@ -87,6 +87,7 @@ class Hangman:
             else: # Checks whether guess is correct and adds it to list of guesses
                 self.check_guess(guess)
                 self.list_of_guesses.append(guess)
+                print(f"Letters guessed: {self.list_of_guesses}")
                 print(self.word_guessed)
                 break
 
