@@ -52,7 +52,7 @@ class Hangman:
 
         Parameters:
         ----------
-        letter: str
+        guess: str
             The letter to be checked
         '''
         guess = guess.lower()
